@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
-function ProductForm({onClose}) {
+function ProductForm({ onClose }) {
+  const [quantity, setQuantity] = useState(0);
+  const handleIncrement = (e) => {
+    e.preventDefault();
+    if (quantity >= 10) {
+      alert("only add 10 items");
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleDecrement = (e) => {
+    e.preventDefault();
+
+    if (quantity <= 1) {
+      alert("items allways must greater than 0");
+    } else {
+      setQuantity(quantity - 1);
+    }
+  };
   return (
     <div>
       <form>
@@ -27,9 +46,19 @@ function ProductForm({onClose}) {
           <label className="ms-1">Quantity</label>
 
           <div className="d-flex align-items-center mt-2 mb-4">
-            <button className="btn btn-info text-white">+</button>
-            <span className="mx-2">0</span>
-            <button className="btn btn-warning text-white ">-</button>
+            <button
+              className="btn btn-info text-white"
+              onClick={handleIncrement}
+            >
+              +
+            </button>
+            <span className="mx-2">{quantity}</span>
+            <button
+              className="btn btn-warning text-white "
+              onClick={handleDecrement}
+            >
+              -
+            </button>
           </div>
         </div>
 
