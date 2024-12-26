@@ -20,7 +20,7 @@ const getAllProducts = async (req,res) =>{
 
 const deleteProduct = async (req,res) =>{
     try {
-        const {id} = req.param
+        const {id} = req.params
         const product = await Product.deleteOne(id)
         res.status(200).send(`product deleted successfully`)
     } catch (error) {
@@ -28,4 +28,14 @@ const deleteProduct = async (req,res) =>{
     }
 }
 
-module.exports = {createProduct,getAllProducts,deleteProduct}
+const updateProduct = async (req,res) =>{
+    try {
+        const {id} = req.params
+        const product = await Product.findByIdAndUpdate({_id:id},req.body,{new:true})
+        res.status(200).json(product)
+    } catch (error) {
+        res.status(500).send({msg:error.message})
+    }
+}
+
+module.exports = {createProduct,getAllProducts,deleteProduct,updateProduct}
