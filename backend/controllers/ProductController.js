@@ -18,4 +18,14 @@ const getAllProducts = async (req,res) =>{
     }
 } 
 
-module.exports = {createProduct,getAllProducts}
+const deleteProduct = async (req,res) =>{
+    try {
+        const {id} = req.param
+        const product = await Product.deleteOne(id)
+        res.status(200).send(`product deleted successfully`)
+    } catch (error) {
+        res.status(500).send({msg:error.message})
+    }
+}
+
+module.exports = {createProduct,getAllProducts,deleteProduct}
