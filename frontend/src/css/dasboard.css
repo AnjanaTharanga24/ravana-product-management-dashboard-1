@@ -19,8 +19,6 @@
     }
 }
 
-
-
 .product-card {
     transition: all 0.3s ease;
     border: 1px solid #ccc;
@@ -29,7 +27,7 @@
   
   .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0.5,0.5,0.5,0.5) !important;
+    box-shadow: 20px 20px 20px rgba(0.5,0.5,0.5,0.5) !important;
   }
   
   .img-container {

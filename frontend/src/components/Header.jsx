@@ -19,7 +19,9 @@ function Header({ onSearchResults }) {
         const response = await axios.get("http://localhost:5001/api/product/");
         onSearchResults(response.data);
       } else {
-        const response = await axios.get(`http://localhost:5001/api/product/search?query=${searchQuery}`);
+        const response = await axios.get(
+          `http://localhost:5001/api/product/search?query=${searchQuery}`
+        );
         onSearchResults(response.data);
       }
     } catch (error) {
@@ -32,34 +34,31 @@ function Header({ onSearchResults }) {
 
   return (
     <div className="d-flex  flex-wrap justify-content-between align-items-center header">
-
-     <div className="search d-flex align-items-center">
+      <div className="search d-flex align-items-center">
         <div className="position-relative w-100">
-          <img src={logoImage} alt="Logo" className="logo" height="50px"/>
+          <img src={logoImage} alt="Logo" className="logo" height="50px" />
         </div>
-        
       </div>
 
       <div className="search d-flex align-items-center ms-5">
         <div className="position-relative w-100">
-          <input 
-            className="form-control" 
-            placeholder="Search products by name..." 
-            name="search" 
-            value={searchQuery} 
+          <input
+            className="form-control"
+            placeholder="Search products by name..."
+            name="search"
+            value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{ width: "250px" }}
           />
         </div>
-        <button 
-          className="ms-2 btn btn-primary" 
+        <button
+          className="ms-2 btn btn-primary"
           onClick={handleSearch}
           disabled={loading}
         >
-         Search
+          Search
         </button>
       </div>
-
 
       <div className="add-btn mt-3 mt-md-0 me-4">
         <button className="btn btn-success" onClick={handleShow}>

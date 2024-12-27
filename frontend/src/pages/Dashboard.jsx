@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import ViewProducts from "../components/ViewProducts";
-import '../css/dasboard.css';
+import "../css/dasboard.css";
 
 function Dashboard() {
   const [searchResults, setSearchResults] = useState(null);
-  
+
   const handleSearchResults = (results) => {
     setSearchResults(results);
   };
