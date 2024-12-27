@@ -46,7 +46,7 @@
     object-fit: contain;
   }
   
-  /* Responsive text sizes */
+
   @media (max-width: 768px) {
     .card-title {
       font-size: 1.2rem;
@@ -57,7 +57,7 @@
     }
   }
   
-  /* Responsive card padding */
+
   @media (max-width: 576px) {
     .card-body {
       padding: 0.75rem;
@@ -68,7 +68,7 @@
     }
   }
   
-  /* Button hover effects */
+
   .btn {
     transition: all 0.2s ease;
   }
@@ -77,7 +77,14 @@
     transform: translateY(-2px);
   }
   
-  /* Ensure consistent card heights */
+
   .card.h-100 {
     height: 100%;
   }
+
+  .custom-swal-size {
+    width: 400px; 
+    height: 300px; 
+    font-size: 18px; 
+  }
+  
