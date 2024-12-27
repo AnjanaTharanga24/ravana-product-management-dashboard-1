@@ -29,11 +29,6 @@ function Header({ onSearchResults }) {
     }
   };
 
-  const handleClearSearch = () => {
-    setSearchQuery("");
-    handleSearch();
-  };
-
   return (
     <div className="d-flex mt-4 flex-wrap justify-content-between align-items-center">
       <div className="search d-flex align-items-center">
@@ -44,35 +39,17 @@ function Header({ onSearchResults }) {
             name="search" 
             value={searchQuery} 
             onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyPress={(e) => e.key === "Enter" && handleSearch()}
           />
-          {searchQuery && (
-            <button 
-              className="btn btn-link position-absolute top-50 end-0 translate-middle-y"
-              onClick={handleClearSearch}
-              style={{ textDecoration: 'none' }}
-            >
-              ×
-            </button>
-          )}
         </div>
         <button 
           className="ms-2 btn btn-primary" 
           onClick={handleSearch}
           disabled={loading}
         >
-          {loading ? "Searching..." : "Search"}
+         Search
         </button>
       </div>
 
-      <div className="category-select mt-3 mt-md-0">
-        <select className="form-select ms-md-5">
-          <option selected>Search by category</option>
-          <option>Laptop</option>
-          <option>Mobile Phone</option>
-          <option>Tablet</option>
-        </select>
-      </div>
 
       <div className="add-btn mt-3 mt-md-0 me-4">
         <button className="btn btn-success" onClick={handleShow}>
