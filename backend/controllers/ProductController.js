@@ -50,4 +50,17 @@ const searchProducts = async (req,res)=>{
         res.status(500).send({msg: error.message});
     }
 }
-module.exports = {createProduct,getAllProducts,deleteProduct,updateProduct,searchProducts}
+
+const searchByCategory = async (req, res) => {
+    try {
+        const { category } = req.query;
+        const products = await Product.find({
+            category: { $regex: category, $options: 'i' }
+        });
+        res.status(200).json(products);
+    } catch (error) {
+        res.status(500).send({msg: error.message});
+    }
+}
+
+module.exports = {createProduct,getAllProducts,deleteProduct,updateProduct,searchProducts,searchByCategory}
