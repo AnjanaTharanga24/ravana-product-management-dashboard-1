@@ -4,9 +4,19 @@ import phoneImg from '../assets/images/phone.png'
 import laptopImg from '../assets/images/laptop.png'
 import tabletImg from '../assets/images/tablet.png'
 import axios from "axios";
+import UpdateProducts from "./UpdateProducts";
 
 function ViewProducts() {
   const [products, setProducts] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+    
+      const handleClose = () => setShowModal(false);
+      const handleShow = (product) =>{
+        setSelectedProduct(product)
+        setShowModal(true);
+      }
+        
   
   useEffect(() => {
     getProducts();
@@ -71,7 +81,7 @@ function ViewProducts() {
 
                 <div className="mt-auto pt-3">
                   <div className="d-flex gap-2 justify-content-between">
-                    <button className="btn btn-info text-white flex-grow-1">
+                    <button className="btn btn-info text-white flex-grow-1" onClick={() =>handleShow(product)}>
                       Update
                     </button>
                     <button 
@@ -87,6 +97,35 @@ function ViewProducts() {
           </div>
         ))}
       </div>
+
+
+      <div
+        className={`modal fade ${showModal ? "show" : ""}`}
+        style={{ display: showModal ? "block" : "none" }}
+        tabIndex="-1"
+        role="dialog"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Update Product</h5>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={handleClose}
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <UpdateProducts product={selectedProduct} onClose={handleClose} onUpdate={getProducts} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {showModal && (
+        <div className="modal-backdrop fade show" onClick={handleClose}></div>
+      )}
     </div>
   );
 }
