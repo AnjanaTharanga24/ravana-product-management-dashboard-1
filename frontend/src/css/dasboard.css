@@ -19,8 +19,65 @@
     }
 }
 
-.product-card{
-    width: 300px;
-    height: auto;
-    margin-left: 20px;
-}
+
+
+.product-card {
+    transition: all 0.3s ease;
+    border: none;
+    background-color: #fff;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+  }
+  
+  .img-container {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .product-img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  
+  /* Responsive text sizes */
+  @media (max-width: 768px) {
+    .card-title {
+      font-size: 1.2rem;
+    }
+    
+    .card-body {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Responsive card padding */
+  @media (max-width: 576px) {
+    .card-body {
+      padding: 0.75rem;
+    }
+    
+    .img-container {
+      height: 150px;
+    }
+  }
+  
+  /* Button hover effects */
+  .btn {
+    transition: all 0.2s ease;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Ensure consistent card heights */
+  .card.h-100 {
+    height: 100%;
+  }

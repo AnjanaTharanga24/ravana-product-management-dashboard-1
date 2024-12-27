@@ -7,7 +7,7 @@ import axios from "axios";
 
 function ViewProducts() {
   const [products, setProducts] = useState([]);
-
+  
   useEffect(() => {
     getProducts();
   }, []);
@@ -15,8 +15,7 @@ function ViewProducts() {
   const getProducts = async () => {
     try {
       const response = await axios.get("http://localhost:5001/api/product/");
-      setProducts(response.data); 
-      console.log(response.data);
+      setProducts(response.data);
     } catch (error) {
       console.log({ msg: error.message });
     }
@@ -24,8 +23,8 @@ function ViewProducts() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/api/product/${id}`);
-      getProducts(); 
+      const response = await axios.delete(`http://localhost:5001/api/product/${id}`);
+      getProducts();
     } catch (error) {
       console.log({ msg: error.message });
     }
@@ -40,38 +39,44 @@ function ViewProducts() {
        return tabletImg
      }
   }
+
   return (
-    <div className="mt-5">
-      <div className="container">
-        <div className="row">
-          {products.map((product,index) => (
-            <div key={index} className="col-md-3 mb-4">
-              <div className="card product-card shadow">
-               
+    <div className="container py-4 mt-5">
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        {products.map((product, index) => (
+          <div key={index} className="col">
+            <div className="card h-100 product-card shadow hover-effect">
+              <div className="img-container p-3 text-center">
                 <img 
                   src={getImage(product.category)} 
-                  height="250px" 
-                  width="300px"
+                  className="img-fluid product-img"
+                  alt={product.name}
                 />
+              </div>
 
-                <div className="card-body">
-                  <h3 className="text-center mb-3">{product.name}</h3>
+              <div className="card-body d-flex flex-column">
+                <h4 className="card-title text-center mb-3">{product.name}</h4>
 
-                  <div className="d-flex justify-content-between mb-1">
-                    <h5 className="text-start ms-3">Category</h5>
-                    <h5 className="text-start me-3">{product.category}</h5>
+                <div className="mb-2">
+                  <div className="d-flex justify-content-between align-items-center mb-2">
+                    <span className="fw-bold">Category:</span>
+                    <span>{product.category}</span>
                   </div>
 
-                  <div className="d-flex justify-content-between mb-1">
-                    <h5 className="text-start ms-3">Quantity</h5>
-                    <h5 className="text-start me-3">{product.quantity}</h5>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <span className="fw-bold">Quantity:</span>
+                    <span>{product.quantity}</span>
                   </div>
+                </div>
 
-                  <div className="d-flex justify-content-between mb-1 p-3">
-                    <button className="btn btn-info text-white">Update</button>
+                <div className="mt-auto pt-3">
+                  <div className="d-flex gap-2 justify-content-between">
+                    <button className="btn btn-info text-white flex-grow-1">
+                      Update
+                    </button>
                     <button 
-                      className="btn btn-danger"
-                      
+                      className="btn btn-danger flex-grow-1"
+                      onClick={() => handleDelete(product._id)}
                     >
                       Delete
                     </button>
@@ -79,8 +84,8 @@ function ViewProducts() {
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );
