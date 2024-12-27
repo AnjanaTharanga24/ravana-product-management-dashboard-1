@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../css/dasboard.css";
-import phoneImg from '../assets/images/phone.png'
-import laptopImg from '../assets/images/laptop.png'
-import tabletImg from '../assets/images/tablet.png'
+import phoneImg from "../assets/images/phone.png";
+import laptopImg from "../assets/images/laptop.png";
+import tabletImg from "../assets/images/tablet.png";
 import axios from "axios";
 import UpdateProducts from "./UpdateProducts";
 import Swal from "sweetalert2";
@@ -12,13 +12,13 @@ function ViewProducts({ searchResults }) {
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-    
+
   const handleClose = () => setShowModal(false);
   const handleShow = (product) => {
-    setSelectedProduct(product)
+    setSelectedProduct(product);
     setShowModal(true);
-  }
-        
+  };
+
   useEffect(() => {
     if (searchResults === null) {
       getProducts();
@@ -49,14 +49,14 @@ function ViewProducts({ searchResults }) {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
+        confirmButtonText: "Yes, delete it!",
       }).then(async (result) => {
         if (result.isConfirmed) {
           await axios.delete(`http://localhost:5001/api/product/${id}`);
           Swal.fire({
             title: "Deleted!",
             text: "Your product has been deleted.",
-            icon: "success"
+            icon: "success",
           });
           getProducts();
         }
@@ -66,11 +66,10 @@ function ViewProducts({ searchResults }) {
       Swal.fire({
         title: "Error!",
         text: "An error occurred while deleting the product.",
-        icon: "error"
+        icon: "error",
       });
     }
   };
-  
 
   const getImage = (category) => {
     if (category === "Mobile Phone") {
@@ -97,7 +96,9 @@ function ViewProducts({ searchResults }) {
       {products.length === 0 ? (
         <div className="text-center">
           <h3 className="text-muted">No products found</h3>
-          <button className="btn btn-primary" onClick={getProducts}>View All</button>
+          <button className="btn btn-primary" onClick={getProducts}>
+            View All
+          </button>
         </div>
       ) : (
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
@@ -105,15 +106,17 @@ function ViewProducts({ searchResults }) {
             <div key={index} className="col">
               <div className="card h-100 product-card shadow hover-effect">
                 <div className="img-container p-3 text-center">
-                  <img 
-                    src={getImage(product.category)} 
+                  <img
+                    src={getImage(product.category)}
                     className="img-fluid product-img"
                     alt={product.name}
                   />
                 </div>
 
                 <div className="card-body d-flex flex-column">
-                  <h4 className="card-title text-center mb-3">{product.name}</h4>
+                  <h4 className="card-title text-center mb-3">
+                    {product.name}
+                  </h4>
 
                   <div className="mb-2">
                     <div className="d-flex justify-content-between align-items-center mb-2">
@@ -129,13 +132,13 @@ function ViewProducts({ searchResults }) {
 
                   <div className="mt-auto pt-3">
                     <div className="d-flex gap-2 justify-content-between">
-                      <button 
-                        className="btn btn-info text-white flex-grow-1" 
+                      <button
+                        className="btn btn-info text-white flex-grow-1"
                         onClick={() => handleShow(product)}
                       >
                         Update
                       </button>
-                      <button 
+                      <button
                         className="btn btn-danger flex-grow-1"
                         onClick={() => handleDelete(product._id)}
                       >
@@ -168,10 +171,10 @@ function ViewProducts({ searchResults }) {
               ></button>
             </div>
             <div className="modal-body">
-              <UpdateProducts 
-                product={selectedProduct} 
-                onClose={handleClose} 
-                onUpdate={getProducts} 
+              <UpdateProducts
+                product={selectedProduct}
+                onClose={handleClose}
+                onUpdate={getProducts}
               />
             </div>
           </div>
