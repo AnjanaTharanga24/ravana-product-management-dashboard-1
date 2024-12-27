@@ -11,7 +11,7 @@ A simple web application for managing products, built with React, Node.js, Expre
 
 ![Screen![Screenshot (114)](https://github.com/user-attachments/assets/c6460f40-ee4e-468d-8982-3730cd616e18)
 
-![Screenshot (114)](https://github.com/user-attachments/assets/d174139a-a40c-405e-b1bd-c31188ff136e)
+![Screenshot (115)](https://github.com/user-attachments/assets/822d5d7a-cf55-4e32-a40f-ea80c621a3b1)
 
 
 ## Setup Instructions
