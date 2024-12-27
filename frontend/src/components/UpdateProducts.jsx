@@ -3,6 +3,7 @@ import phoneImg from '../assets/images/phone.png'
 import laptopImg from '../assets/images/laptop.png'
 import tabletImg from '../assets/images/tablet.png'
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function UpdateProducts({ product, onClose, onUpdate }) {
   const [formData, setFormData] = useState({
@@ -93,6 +94,16 @@ function UpdateProducts({ product, onClose, onUpdate }) {
 
     try {
       await axios.put(`http://localhost:5001/api/product/${product._id}`, formData);
+       Swal.fire({
+              position: "bottom-end",
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: false,
+              timer: 2000,
+              customClass: {
+                popup: 'custom-swal-size'
+              }
+            });
       onUpdate();
       onClose();
     } catch (error) {

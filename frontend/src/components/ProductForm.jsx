@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
+import Swal from "sweetalert2";
+import "../css/dasboard.css";
 
 function ProductForm({ onClose }) {
   const [product, setProduct] = useState({
@@ -43,6 +45,26 @@ function ProductForm({ onClose }) {
         product
       );
       console.log(response.data);
+      Swal.fire({
+        position: "bottom-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'custom-swal-size'
+        }
+      });
+      
+      setTimeout(()=>{
+        onClose();
+      },2000)
+      
+      setTimeout(()=>{
+        window.location.reload();
+      },2001)
+
+  
     } catch (error) {
       console.log({ msg: error.message });
     }
@@ -51,7 +73,11 @@ function ProductForm({ onClose }) {
   const handleIncrement = (e) => {
     e.preventDefault();
     if (product.quantity >= 10) {
-      alert("Only add up to 10 items.");
+      Swal.fire({
+              title: "Error!",
+              text: "cannot add more than 10",
+              icon: "error"
+            });
     } else {
       setProduct((prev) => ({
         ...prev,
@@ -63,7 +89,11 @@ function ProductForm({ onClose }) {
   const handleDecrement = (e) => {
     e.preventDefault();
     if (product.quantity <= 1) {
-      alert("Quantity must be greater than 0.");
+      Swal.fire({
+        title: "Error!",
+        text: "cannot add less than 1",
+        icon: "error"
+      });
     } else {
       setProduct((prev) => ({
         ...prev,

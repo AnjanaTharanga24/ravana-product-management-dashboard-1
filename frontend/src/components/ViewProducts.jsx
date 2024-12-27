@@ -5,6 +5,7 @@ import laptopImg from '../assets/images/laptop.png'
 import tabletImg from '../assets/images/tablet.png'
 import axios from "axios";
 import UpdateProducts from "./UpdateProducts";
+import Swal from "sweetalert2";
 
 function ViewProducts({ searchResults }) {
   const [products, setProducts] = useState([]);
@@ -41,12 +42,35 @@ function ViewProducts({ searchResults }) {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/api/product/${id}`);
-      getProducts();
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't delete this product!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axios.delete(`http://localhost:5001/api/product/${id}`);
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your product has been deleted.",
+            icon: "success"
+          });
+          getProducts();
+        }
+      });
     } catch (error) {
       console.log({ msg: error.message });
+      Swal.fire({
+        title: "Error!",
+        text: "An error occurred while deleting the product.",
+        icon: "error"
+      });
     }
   };
+  
 
   const getImage = (category) => {
     if (category === "Mobile Phone") {
