@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import ViewProducts from "../components/ViewProducts";
+import '../css/dasboard.css';
 
 function Dashboard() {
   const [searchResults, setSearchResults] = useState(null);
@@ -10,7 +11,7 @@ function Dashboard() {
   };
 
   return (
-    <div>
+    <div className="home-bg min-vh-100">
       <Header onSearchResults={handleSearchResults} />
       <ViewProducts searchResults={searchResults} />
     </div>
