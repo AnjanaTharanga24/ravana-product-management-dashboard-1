@@ -93,7 +93,7 @@ function ViewProducts({ searchResults }) {
   }
 
   return (
-    <div className="container py-4 mt-5">
+    <div className="container py-4 mt-5 mb-5">
       {products.length === 0 ? (
         <div className="text-center">
           <h3 className="text-muted">No products found</h3>

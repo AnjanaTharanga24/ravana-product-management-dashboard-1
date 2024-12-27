@@ -97,7 +97,7 @@ function UpdateProducts({ product, onClose, onUpdate }) {
        Swal.fire({
               position: "bottom-end",
               icon: "success",
-              title: "Your work has been saved",
+              title: "Product updated successfully",
               showConfirmButton: false,
               timer: 2000,
               customClass: {

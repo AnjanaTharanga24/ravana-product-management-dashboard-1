@@ -48,7 +48,7 @@ function ProductForm({ onClose }) {
       Swal.fire({
         position: "bottom-end",
         icon: "success",
-        title: "Your work has been saved",
+        title: "Add product successfully",
         showConfirmButton: false,
         timer: 1500,
         customClass: {

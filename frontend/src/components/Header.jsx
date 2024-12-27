@@ -31,7 +31,7 @@ function Header({ onSearchResults }) {
   };
 
   return (
-    <div className="d-flex mt-3 flex-wrap justify-content-between align-items-center">
+    <div className="d-flex  flex-wrap justify-content-between align-items-center header">
 
      <div className="search d-flex align-items-center">
         <div className="position-relative w-100">
@@ -44,10 +44,11 @@ function Header({ onSearchResults }) {
         <div className="position-relative w-100">
           <input 
             className="form-control" 
-            placeholder="Search products..." 
+            placeholder="Search products by name..." 
             name="search" 
             value={searchQuery} 
             onChange={(e) => setSearchQuery(e.target.value)}
+            style={{ width: "250px" }}
           />
         </div>
         <button 
