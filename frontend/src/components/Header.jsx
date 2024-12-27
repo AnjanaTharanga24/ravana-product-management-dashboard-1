@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../css/dasboard.css";
 import ProductForm from "./ProductForm";
+import logoImage from "../assets/images/logo.png";
 import axios from "axios";
 
 function Header({ onSearchResults }) {
@@ -30,8 +31,16 @@ function Header({ onSearchResults }) {
   };
 
   return (
-    <div className="d-flex mt-4 flex-wrap justify-content-between align-items-center">
-      <div className="search d-flex align-items-center">
+    <div className="d-flex mt-3 flex-wrap justify-content-between align-items-center">
+
+     <div className="search d-flex align-items-center">
+        <div className="position-relative w-100">
+          <img src={logoImage} alt="Logo" className="logo" height="50px"/>
+        </div>
+        
+      </div>
+
+      <div className="search d-flex align-items-center ms-5">
         <div className="position-relative w-100">
           <input 
             className="form-control" 
