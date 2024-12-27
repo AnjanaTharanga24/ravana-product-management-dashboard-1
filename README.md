@@ -2,6 +2,11 @@
 
 A simple web application for managing products, built with React, Node.js, Express, and MongoDB.
 
+##Screenshots
+
+
+![Screenshot (113)](https://github.com/user-attachments/assets/39701959-c1a8-441c-9955-a33f1f8a7b37)
+
 ## Setup Instructions
 
 ### Backend Setup
