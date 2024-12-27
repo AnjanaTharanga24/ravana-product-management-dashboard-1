@@ -131,18 +131,18 @@ function ViewProducts({ searchResults }) {
                   </div>
 
                   <div className="mt-auto pt-3">
-                    <div className="d-flex gap-2 justify-content-between">
+                    <div className="d-flex gap-5 justify-content-between">
                       <button
                         className="btn btn-info text-white flex-grow-1"
                         onClick={() => handleShow(product)}
                       >
-                        Update
+                        <i className="fas fa-edit"></i>
                       </button>
                       <button
                         className="btn btn-danger flex-grow-1"
                         onClick={() => handleDelete(product._id)}
                       >
-                        Delete
+                        <i className="fas fa-trash-alt"></i>
                       </button>
                     </div>
                   </div>
