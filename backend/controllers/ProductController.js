@@ -38,4 +38,16 @@ const updateProduct = async (req,res) =>{
     }
 }
 
-module.exports = {createProduct,getAllProducts,deleteProduct,updateProduct}
+const searchProducts = async (req,res)=>{
+    try {
+        const {query} = req.query;
+
+        const products = await Product.find({
+            name:{$regex:query,$options:"i"}
+        })
+        res.status(200).json(products);
+    } catch (error) {
+        res.status(500).send({msg: error.message});
+    }
+}
+module.exports = {createProduct,getAllProducts,deleteProduct,updateProduct,searchProducts}
